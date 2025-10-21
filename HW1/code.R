@@ -14,3 +14,22 @@ hist(gas_values, xlab="value", ylab="frequency") # for better visualization
 plot(freq_table, xlab="value", ylab="frequency") # more detailed
 # boxplot
 boxplot(gas_values, ylab="daily gas emission")
+
+# sorting for making things easier
+gas_values <- sort(gas_values)
+data_len <- length(gas_values) # there are 73 samples
+# first quartile
+q1 <- gas_values[(data_len+1)/4]
+q1
+# second quartile (median)
+q2 <- median(gas_values)
+q2
+# third quartile
+q3 <- gas_values[(data_len+1)*(3/4)]
+q3
+
+# declaring ppm > 25 condition
+condition <- gas_values > 25
+gas_above_limit <- gas_values[condition]
+gas_above_limit
+length(gas_above_limit) # 11 out of 73 days with gas emission above the limit. it's not exactly critical, but should be minimized
