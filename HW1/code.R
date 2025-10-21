@@ -38,3 +38,22 @@ condition <- gas_values > 25
 gas_above_limit <- gas_values[condition]
 gas_above_limit
 length(gas_above_limit) # 11 out of 73 days with gas emission above the limit. it's not exactly critical, but should be minimized
+
+
+#############################################################
+######################   QUESTION 2    ######################
+#############################################################
+
+# fica pra vc andre
+
+
+
+
+#############################################################
+######################   QUESTION 3    ######################
+#############################################################
+
+
+# importing dataset
+bike_sharing <- read.csv("/home/leodayvison/Academico/Estatística para Engenharia/Homeworks/HW1/HW1_bike_sharing.csv")
+bike_sharing
