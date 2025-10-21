@@ -55,5 +55,29 @@ length(gas_above_limit) # 11 out of 73 days with gas emission above the limit. i
 
 
 # importing dataset
-bike_sharing <- read.csv("/home/leodayvison/Academico/Estatística para Engenharia/Homeworks/HW1/HW1_bike_sharing.csv")
+bike_sharing <- read.csv("HW1_bike_sharing.csv")
 bike_sharing
+ 
+# item 2
+attach(bike_sharing)
+
+# temperature
+temp_median <- median(temp)
+temp_mean <- mean(temp)
+temp_q1 <- temp[(length(temp))/4]
+temp_q2 <- median(temp)
+temp_q3 <- temp[(length(temp))*(3/4)]
+
+# number of casual users
+casual_median <- median(casual)
+casual_mean <- mean(casual)
+casual_q1 <- casual[(length(casual))/4]
+casual_q2 <- median(casual)
+casual_q3 <- casual[(length(casual))*(3/4)]
+
+# number of registered users
+reg_median <- median(registered)
+reg_mean <- mean(registered)
+reg_q1 <- registered[(length(registered))/4]
+reg_q2 <- median(registered)
+reg_q3 <- registered[(length(registered))*(3/4)]
