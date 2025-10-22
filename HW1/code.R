@@ -55,10 +55,10 @@ length(gas_above_limit) # 11 out of 73 days with gas emission above the limit. i
 
 
 # importing dataset
-bike_sharing <- read.csv("HW1_bike_sharing.csv")
+bike_sharing <- read.csv("/home/leodayvison/Academico/Estatística para Engenharia/Homeworks/HW1/HW1_bike_sharing.csv")
 bike_sharing
  
-# item 2
+########### item 2 ###########
 attach(bike_sharing)
 
 # temperature
@@ -81,3 +81,30 @@ reg_mean <- mean(registered)
 reg_q1 <- registered[(length(registered))/4]
 reg_q2 <- median(registered)
 reg_q3 <- registered[(length(registered))*(3/4)]
+
+# table 
+atrb_median <- c(temp_median, casual_median, reg_median)
+atrb_mean <- c(temp_mean, casual_mean, reg_mean)
+atrb_q1 <- c(temp_q1, casual_q1, reg_q1)
+atrb_q2 <- c(temp_q2, casual_q2, reg_q2)
+atrb_q3 <- c(temp_q3, casual_q3, reg_q3)
+tab <- cbind(atrb_median, atrb_mean, atrb_q1, atrb_q2, atrb_q3)
+dimnames(tab) <- list(Attribute = c("temperature", "casual users", "registered users"), Measures = c("median", "mean", "Q1", "Q2", "Q3"))
+
+tab # table 
+
+########### item 3 ###########
+
+
+
+########### item 4 ###########
+library(ggplot2) # if needed, please type 'install.packages("ggplot2")' in your R console
+total_users <- casual + registered
+real_temp <- temp*41
+
+dates <- as.Date(dteday)
+users_ts <- data.frame(Date=dates, Users=total_users)
+temp_ts <- data.frame(Date=dates, Temp=real_temp)
+
+ggplot(users_ts, aes(x = Date, y = Users)) + geom_line(color = "purple") + labs(title = "Total users time series", x = "Date", y = "Total Users") + theme_minimal()
+ggplot(temp_ts, aes(x = Date, y = Temp)) + geom_line(color = "red") + labs(title = "Temperature time series", x = "Date", y = "Temperature") + theme_minimal()
