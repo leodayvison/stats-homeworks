@@ -51,7 +51,7 @@ nacionalidade <- c(Italiana, Inglesa, Belga, Espanhola, Italiana, Espanhola, Fra
 renda <- c(2.3, 1.6, 1.2, 0.9, 2.1, 1.6, 1.8, 1.4, 1.2, 2.8, 3.4, 2.7, 1.6, 1.2, 1.1, 2.5, 2.0, 1.7, 2.1, 3.2)
 xp <- c(2, 8, 21, 1, 15, 3, 28, 5, 13, 20, 32, 23, 1, 0, 29, 18, 19, 7, 12, 23)
 
-#1.
+########### item 1 ###########
 media_idade <- mean(idade)
 media_renda <- mean(renda)
 media_xp <- mean(xp)
@@ -64,7 +64,7 @@ dp_idade <- sd(idade)
 dp_renda <- sd(renda)
 dp_xp <- sd(xp)
 
-#2.
+########### item 2 ###########
 df <- data.frame(idade, nacionalidade, renda, xp)
 
 
