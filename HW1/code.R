@@ -1,3 +1,5 @@
+library(ggplot2) # if needed, please type 'install.packages("ggplot2")' in your R console
+
 #############################################################
 ######################   QUESTION 1    ######################
 #############################################################
@@ -118,7 +120,7 @@ tab # table
 
 
 ########### item 4 ###########
-library(ggplot2) # if needed, please type 'install.packages("ggplot2")' in your R console
+
 total_users <- casual + registered
 real_temp <- temp*41
 
