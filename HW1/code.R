@@ -45,31 +45,60 @@ length(gas_above_limit) # 11 out of 73 days with gas emission above the limit. i
 #############################################################
 ######################   QUESTION 2    ######################
 #############################################################
-
-
 # our data
 idade <- c(28, 34, 46, 26, 37, 29, 51, 31, 39, 43, 58, 44, 25, 23, 52, 42, 48, 33, 38, 46)
-nacionalidade <- c(Italiana, Inglesa, Belga, Espanhola, Italiana, Espanhola, Francesa, Belga, Italiana, Italiana, Italiana, Inglesa, Francesa, Espanhola, Italiana, Alemã, Francesa, Italiana, Alemã, Italiana)
+nacionalidade <- c("Italiana", "Inglesa", "Belga", "Espanhola", "Italiana", "Espanhola", "Francesa", "Belga", "Italiana", "Italiana", "Italiana", "Inglesa", "Francesa", "Espanhola", "Italiana", "Alemã", "Francesa", "Italiana", "Alemã", "Italiana")
 renda <- c(2.3, 1.6, 1.2, 0.9, 2.1, 1.6, 1.8, 1.4, 1.2, 2.8, 3.4, 2.7, 1.6, 1.2, 1.1, 2.5, 2.0, 1.7, 2.1, 3.2)
-xp <- c(2, 8, 21, 1, 15, 3, 28, 5, 13, 20, 32, 23, 1, 0, 29, 18, 19, 7, 12, 23)
+experiencia <- c(2, 8, 21, 1, 15, 3, 28, 5, 13, 20, 32, 23, 1, 0, 29, 18, 19, 7, 12, 23)
 
 ########### item 1 ###########
 media_idade <- mean(idade)
 media_renda <- mean(renda)
-media_xp <- mean(xp)
+media_experiencia <- mean(experiencia)
 
 mediana_idade <- median(idade)
 mediana_renda <- median(renda)
-mediana_xp <- median(xp)
+mediana_experiencia <- median(experiencia)
 
 dp_idade <- sd(idade)
 dp_renda <- sd(renda)
-dp_xp <- sd(xp)
+dp_experiencia <- sd(experiencia)
 
 ########### item 2 ###########
-df <- data.frame(idade, nacionalidade, renda, xp)
+df <- data.frame(idade, nacionalidade, renda, experiencia)
 
+nac_media_renda <- tapply(df$renda, df$nacionalidade, mean)
+nac_media_experiencia <- tapply(df$experiencia, df$nacionalidade, mean)
 
+i_maior_renda <- which.max(nac_media_renda)
+nac_maior_renda <- names(nac_media_renda[i_maior_renda])
+print(paste("Nacionalidade com maior renda:", nac_maior_renda))
+
+i_maior_experiencia <- which.max(nac_media_experiencia)
+nac_maior_experiencia <- names(nac_media_experiencia[i_maior_experiencia])
+print(paste("Nacionalidade com maior experiência:", nac_maior_experiencia))
+
+########### item 3 ###########
+pearson <- cor(df$renda, df$experiencia)
+print(paste("Coeficiente de correlação de Pearson entre experiência e renda:", pearson))
+plot(df$experiencia, df$renda, main = "Renda desejada em função da epxeriência", xlab = "Experiencia", ylab = "Renda Desejada")
+
+########### item 4 ###########
+selecionados <- subset(df, df$renda < 2 & df$experiencia >= 10)
+
+num_selecionados <- nrow(selecionados)
+print(paste("Numero de candidatos selecionados:", num_selecionados))
+
+print(selecionados$nacionalidade)
+print(selecionados$idade)
+
+########### item 5 ###########
+boxplot(idade ~ nacionalidade,
+        data = df,
+        main = "Distribuição de Idade por Nacionalidade",
+        xlab = "Nacionalidade",
+        ylab = "Idade (anos)"
+)
 
 #############################################################
 ######################   QUESTION 3    ######################
