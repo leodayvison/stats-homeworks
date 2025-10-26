@@ -106,7 +106,7 @@ boxplot(idade ~ nacionalidade,
 
 
 # importing dataset
-bike_sharing <- read.csv("/home/leodayvison/Academico/Estatística para Engenharia/Homeworks/HW1/HW1_bike_sharing.csv")
+bike_sharing <- read.csv("HW1_bike_sharing.csv")
 bike_sharing
  
 ########### item 2 ###########
