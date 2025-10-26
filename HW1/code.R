@@ -159,3 +159,6 @@ temp_ts <- data.frame(Date=dates, Temp=real_temp)
 
 ggplot(users_ts, aes(x = Date, y = Users)) + geom_line(color = "purple") + labs(title = "Total users time series", x = "Date", y = "Total Users") + theme_minimal()
 ggplot(temp_ts, aes(x = Date, y = Temp)) + geom_line(color = "red") + labs(title = "Temperature time series", x = "Date", y = "Temperature") + theme_minimal()
+
+
+
