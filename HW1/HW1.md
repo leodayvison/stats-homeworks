@@ -12,3 +12,6 @@ As demais fontes estão presentes, em formato PDF, no diretório desse homework.
 
 ### Link do GitHub:
 https://github.com/leodayvison/stats-homeworks
+
+### Link do relatório (caso o arquivo não abra):
+https://www.overleaf.com/read/vbcvfqvphjtf#e9e730
