@@ -114,26 +114,29 @@ bike_sharing
 ########### item 2 ###########
 attach(bike_sharing)
 
+s_temp <- sort(temp)
+s_casual <- sort(casual)
+s_registered <- sort(registered)
 # temperature
 temp_median <- median(temp)
 temp_mean <- mean(temp)
-temp_q1 <- temp[(length(temp))/4]
+temp_q1 <- s_temp[(length(temp)+1)/4]
 temp_q2 <- median(temp)
-temp_q3 <- temp[(length(temp))*(3/4)]
+temp_q3 <- s_temp[(length(temp)+1)*(3/4)]
 
 # number of casual users
 casual_median <- median(casual)
 casual_mean <- mean(casual)
-casual_q1 <- casual[(length(casual))/4]
+casual_q1 <- s_casual[(length(casual)+1)/4]
 casual_q2 <- median(casual)
-casual_q3 <- casual[(length(casual))*(3/4)]
+casual_q3 <- s_casual[(length(casual)+1)*(3/4)]
 
 # number of registered users
 reg_median <- median(registered)
 reg_mean <- mean(registered)
-reg_q1 <- registered[(length(registered))/4]
+reg_q1 <- s_registered[(length(registered)+1)/4]
 reg_q2 <- median(registered)
-reg_q3 <- registered[(length(registered))*(3/4)]
+reg_q3 <- s_registered[(length(registered)+1)*(3/4)]
 
 # table 
 atrb_median <- c(temp_median, casual_median, reg_median)
