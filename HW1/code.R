@@ -81,7 +81,7 @@ print(paste("Nacionalidade com maior experiência:", nac_maior_experiencia))
 ########### item 3 ###########
 pearson <- cor(df$renda, df$experiencia)
 print(paste("Coeficiente de correlação de Pearson entre experiência e renda:", pearson))
-plot(df$experiencia, df$renda, main = "Renda desejada em função da epxeriência", xlab = "Experiencia", ylab = "Renda Desejada")
+plot(df$experiencia, df$renda, main = "Renda desejada em função da experiência", xlab = "Experiencia", ylab = "Renda Desejada")
 
 ########### item 4 ###########
 selecionados <- subset(df, df$renda < 2 & df$experiencia >= 10)
@@ -99,6 +99,8 @@ boxplot(idade ~ nacionalidade,
         xlab = "Nacionalidade",
         ylab = "Idade (anos)"
 )
+
+ggplot(df, aes(x = idade, fill = nacionalidade)) + geom_histogram(binwidth = 5, color = "black") + facet_wrap(~ nacionalidade) + labs(title = "Histograma de Idade por Nacionalidade", x = "Idade", y = "Contagem") + theme_minimal()
 
 #############################################################
 ######################   QUESTION 3    ######################
