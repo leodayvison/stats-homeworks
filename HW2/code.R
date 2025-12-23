@@ -1,8 +1,8 @@
 ############ QUESTION 1 ############
 
 # Item 1
-k <- 0:n
 n <- 50
+k <- 0:n
 p <- 0.7
 
 probability <- dbinom(x = k,
@@ -27,15 +27,25 @@ plot(x = k,
      main = "Cumulative Distribution Function")
 
 # Item 3
-expected_value <- sum(k*probability)
+expected_value <- sum(k*probability) 
+
 diff <- (k - expected_value)^2
-var <- sum(diff*probability)
-std_dev <- sqrt(var)
+x_variance <- sum(diff*probability)
+
+std_dev <- sqrt(x_variance)
+
+expected_value
+x_variance
+std_dev
 
 # Item 4
-prob_leq_20 <- pbinom(q=50, size=n, prob=p) - pbinom(q=19, size=n, prob=p)
+prob_leq_20 <- 1 - pbinom(q=19, size=n, prob=p)
 prob_btw_3043 <- pbinom(q=42, size=n, prob=p) - pbinom(q=30, size=n, prob=p)
 prob_eq_31 <- dbinom(x=31, size=n, prob=p)
+
+prob_leq_20
+prob_btw_3043
+prob_eq_31
 
 # Item 6
 popular_dessert_prob <- dbinom(x = k,
@@ -47,7 +57,9 @@ more_clients_prob <- dbinom(x = more_clients,
                             prob = p)
 plot(y=popular_dessert_prob,
      x=k,
-     ylab="Probability w/ more popular dessert")
+     ylab="Probability",
+     main="Probability w/ more popular dessert")
 plot(y = more_clients_prob,
      x = more_clients,
-     ylab="Probability w/ more clients")
+     ylab="Probability",
+     main="Probability w/ more clients")
