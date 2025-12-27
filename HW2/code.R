@@ -63,3 +63,44 @@ plot(y = more_clients_prob,
      x = more_clients,
      ylab="Probability",
      main="Probability w/ more clients")
+
+
+
+
+
+############ QUESTION 3 ############
+
+# Item 1
+
+boxmuller <- function(){
+  U1 = runif(1)
+  U2 = runif(1)
+  R = sqrt(-2*log(U1))
+  theta = 2*pi*U2
+  Z0 = R*cos(theta)
+  Z1 = R*sin(theta)
+  temp1 = Z0*3.5 + 62
+  temp2 = Z1*3.5 + 62
+  res <- c(temp1, temp2)
+  return(res)
+}
+
+label = rep("s1", 1000)
+
+# Item 2
+v1 = rep(NA, 1000)
+v2 = rep(NA, 1000)
+v2 <- rnorm(1000, mean=62, sd=3.5)
+v1 <- numeric(1000)
+
+idx <- 1
+for (i in 1:500) {
+  vals <- boxmuller()
+  v1[idx]     <- vals[1]
+  v1[idx + 1] <- vals[2]
+  idx <- idx + 2
+}
+
+df = as.data.frame(cbind(samples1, label))
+
+# Item 3 
