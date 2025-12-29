@@ -1,3 +1,5 @@
+library(ggplot2)
+set.seed(42)
 ############ QUESTION 1 ############
 
 # Item 1
@@ -88,19 +90,56 @@ boxmuller <- function(){
 label = rep("s1", 1000)
 
 # Item 2
+# Empty vectors
 v1 = rep(NA, 1000)
 v2 = rep(NA, 1000)
-v2 <- rnorm(1000, mean=62, sd=3.5)
-v1 <- numeric(1000)
 
 idx <- 1
-for (i in 1:500) {
+for (i in 1:502) {
   vals <- boxmuller()
   v1[idx]     <- vals[1]
   v1[idx + 1] <- vals[2]
   idx <- idx + 2
 }
 
-df = as.data.frame(cbind(samples1, label))
+v2 <- rnorm(1000, mean=62, sd=3.5)
 
-# Item 3 
+
+# Item 4
+# comparing our function samples with rnorm's
+label <- rep("empvals", 1000)
+samples <- v1
+df1 <- as.data.frame(cbind(samples, label))
+
+label <- rep("rvals", 1000)
+samples <- v2
+df2 <- as.data.frame(cbind(samples, label))
+
+df3 <- rbind(df1, df2)
+df3$samples <- as.numeric(df3$samples)
+
+ggplot(df3, aes(x=samples, color=label, fill=label)) +
+  geom_histogram(position="identity", alpha=0.5)+
+  theme(legend.position="top") + theme_classic()
+
+# attaching normal distribution PDF
+cpumean <- 62
+cpusd <- 3.5
+cpupdf <- dnorm(df3$samples, mean=62, sd=3.5)
+
+
+ggplot(df3, aes(x = samples, color = label, fill = label)) +
+  geom_histogram(
+    aes(y = after_stat(density)),
+    position = "identity",
+    alpha = 0.5,
+    bins = 30
+  ) +
+  stat_function(
+    fun = dnorm,
+    args = list(mean = cpumean, sd = cpusd),
+    color = "black",
+    linewidth = 1
+  ) +
+  theme_classic() +
+  theme(legend.position = "top")
