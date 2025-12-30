@@ -67,8 +67,22 @@ plot(y = more_clients_prob,
      main="Probability w/ more clients")
 
 
+############ QUESTION 2 ############
 
+# Item 4
+set.seed(42)
+simulacoes <- rbinom(100000, size = 10^7, prob = 10^-7)
+df_sim <- data.frame(vencedores = simulacoes)
 
+x_vals <- 0:8
+df_teo <- data.frame(x = x_vals, prob = dpois(x_vals, lambda = 1))
+
+ggplot(df_sim, aes(x = vencedores)) +
+  geom_histogram(aes(y = after_stat(density)), binwidth = 1, fill = "lightblue", color = "black") +
+
+  geom_point(data = df_teo, aes(x = x, y = prob), color = "red") +
+  geom_line(data = df_teo, aes(x = x, y = prob), color = "red") +
+  labs(title = "Simulação vs Teoria", x = "Número de Vencedores", y = "Probabilidade")
 
 ############ QUESTION 3 ############
 
@@ -95,7 +109,7 @@ v1 = rep(NA, 1000)
 v2 = rep(NA, 1000)
 
 idx <- 1
-for (i in 1:502) {
+for (i in 1:500) {
   vals <- boxmuller()
   v1[idx]     <- vals[1]
   v1[idx + 1] <- vals[2]
@@ -104,6 +118,65 @@ for (i in 1:502) {
 
 v2 <- rnorm(1000, mean=62, sd=3.5)
 
+# Item 3
+# (a) Means
+m1 = mean(v1)
+m1_calc = sum(v1)/1000
+
+m2 = mean(v2)
+
+# (b) Standard Deviations
+dp1 = sd(v1)
+var1_calc = sum((v1-m1)^2)/(1000-1)
+dp1_calc = sqrt(var1_calc)
+
+dp2 = sd(v2)
+
+#(c) Min and max temperature
+#max
+max1 = max(v1)
+max1_calc = v1[1]
+for (i in 1:1000) {
+  if (v1[i] > max1_calc) {
+    max1_calc <- v1[i]
+  }
+}
+max2 = max(v2)
+
+#min
+min1 = min(v1)
+min1_calc = v1[1]
+for (i in 1:1000) {
+  if (v1[i] < min1_calc) {
+    min1_calc <- v1[i]
+  }
+}
+min2 = min(v2)
+
+#(d) Empirical and theoretical probability P (T > 68).
+aux <- v1[v1 > 68]
+p68_emp1 = length(aux)/length(v1)
+
+aux <- v2[v2 >68]
+p68_emp2 <- length(aux)/length(v2)
+
+
+p68_teo = pnorm(68, mean=62, sd=3.5, lower.tail = FALSE, log.p = FALSE)
+
+#(e) Empirical and theoretical probability P (60 < T < 65).
+aux <- v1[60 < v1 & v1 < 65]
+p60_emp1 = length(aux)/length(v1)
+
+aux <- v2[60 < v2 & v2 < 65]
+p60_emp2 <- length(aux)/length(v2)
+
+p60_teo = pnorm(65, mean=62, sd=3.5, lower.tail = TRUE, log.p = FALSE) - pnorm(60, mean=62, sd=3.5, lower.tail = TRUE, log.p = FALSE)
+
+#(f) Theoretical probability P (T > 75).
+p75_teo = pnorm(75, mean=62, sd=3.5, lower.tail = FALSE, log.p = FALSE)
+
+v1_75 <- v1[v1 > 75]
+v2_75 <- v2[v2 > 75]
 
 # Item 4
 # comparing our function samples with rnorm's
