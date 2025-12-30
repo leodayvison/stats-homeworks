@@ -1,6 +1,8 @@
 library(ggplot2)
 set.seed(42)
 ############ QUESTION 1 ############
+rm(list=ls()) 			# clean the working space
+graphics.off()			# close all the graphic windows
 
 # Item 1
 n <- 50
@@ -68,6 +70,9 @@ plot(y = more_clients_prob,
 
 
 ############ QUESTION 2 ############
+rm(list=ls()) 			# clean the working space
+graphics.off()			# close all the graphic windows
+
 
 # Item 4
 set.seed(42)
@@ -85,6 +90,9 @@ ggplot(df_sim, aes(x = vencedores)) +
   labs(title = "Simulação vs Teoria", x = "Número de Vencedores", y = "Probabilidade")
 
 ############ QUESTION 3 ############
+rm(list=ls()) 			# clean the working space
+graphics.off()			# close all the graphic windows
+
 
 # Item 1
 
